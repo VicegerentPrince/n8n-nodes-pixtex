@@ -38,8 +38,8 @@ jobs:
       - name: Install
         run: npm ci
 
-      - name: Typecheck + test
-        run: npm run typecheck && npm test
+      - name: Lint + typecheck + test
+        run: npm run lint && npm run typecheck && npm test
 
       # prepublishOnly runs the build
       - name: Publish to npm (OIDC — no token)

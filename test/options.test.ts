@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { buildOptions, coerceWorkflow, outputFileName } from './options'
+import { buildOptions, coerceWorkflow, outputFileName } from '../nodes/Pixtex/options'
 
 const WORKFLOW = { name: 'My Flow', nodes: [], connections: {} }
 

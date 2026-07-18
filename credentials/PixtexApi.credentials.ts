@@ -2,6 +2,7 @@ import type {
   IAuthenticateGeneric,
   ICredentialTestRequest,
   ICredentialType,
+  Icon,
   INodeProperties,
 } from 'n8n-workflow'
 
@@ -11,6 +12,11 @@ export class PixtexApi implements ICredentialType {
   displayName = 'Pixtex API'
 
   documentationUrl = 'https://pixtex.dev/developers'
+
+  icon: Icon = {
+    light: 'file:../nodes/Pixtex/pixtex.svg',
+    dark: 'file:../nodes/Pixtex/pixtex.dark.svg',
+  }
 
   properties: INodeProperties[] = [
     {

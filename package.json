@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-pixtex",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Render n8n workflows into share-ready diagrams from inside n8n — one-off images or permanent hosted URLs, powered by the Pixtex render API.",
   "keywords": [
     "n8n-community-node-package",
@@ -19,7 +19,11 @@
   },
   "bugs": "https://github.com/VicegerentPrince/n8n-nodes-pixtex/issues",
   "license": "MIT",
-  "author": "Muhammad Muneeb (https://github.com/VicegerentPrince)",
+  "author": {
+    "name": "Muhammad Muneeb",
+    "email": "muneebshahzad7128@gmail.com",
+    "url": "https://github.com/VicegerentPrince"
+  },
   "engines": {
     "node": ">=20"
   },
@@ -29,6 +33,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json && node scripts/copy-assets.mjs",
     "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest",
     "prepublishOnly": "npm run build"
@@ -43,9 +48,13 @@
     ]
   },
   "devDependencies": {
+    "@n8n/eslint-plugin-community-nodes": "^0.24.0",
     "@types/node": "^24.0.0",
-    "n8n-workflow": "^1.82.0",
+    "eslint": "^9.29.0",
+    "eslint-plugin-n8n-nodes-base": "^1.16.7",
+    "n8n-workflow": "^2.16.0",
     "typescript": "^5.8.3",
+    "typescript-eslint": "^8.64.0",
     "vitest": "^4.1.10"
   },
   "peerDependencies": {

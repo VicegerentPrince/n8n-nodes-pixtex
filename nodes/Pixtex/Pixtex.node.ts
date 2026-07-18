@@ -529,7 +529,6 @@ export class Pixtex implements INodeType {
           returnData.push({ json: { error: errorMessage(error) }, pairedItem: { item: i } })
           continue
         }
-        if (error instanceof NodeOperationError || error instanceof NodeApiError) throw error
         throw new NodeApiError(this.getNode(), error as JsonObject, {
           itemIndex: i,
           message: errorMessage(error),

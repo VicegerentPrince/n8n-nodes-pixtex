@@ -18,6 +18,9 @@ jobs:
       - name: Install
         run: npm ci
 
+      - name: Lint (n8n community-node rules)
+        run: npm run lint
+
       - name: Typecheck
         run: npm run typecheck
 

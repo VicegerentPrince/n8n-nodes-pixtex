@@ -12,5 +12,5 @@
     "noUnusedLocals": true,
     "useUnknownInCatchVariables": true
   },
-  "include": ["credentials/**/*.ts", "nodes/**/*.ts"]
+  "include": ["credentials/**/*.ts", "nodes/**/*.ts", "test/**/*.ts"]
 }

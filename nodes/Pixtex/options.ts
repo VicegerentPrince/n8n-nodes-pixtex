@@ -44,11 +44,17 @@ export function buildOptions(
 export function coerceWorkflow(raw: unknown): PixtexWorkflow {
   let value = raw
   if (typeof value === 'string') {
+    // parse-then-throw keeps the throw outside the catch block — n8n's
+    // community-node lint forbids raw throws inside catch
+    let parsed: unknown
+    let parseFailed = false
     try {
-      value = JSON.parse(value)
+      parsed = JSON.parse(value)
     } catch {
-      throw new Error('Workflow JSON is not valid JSON')
+      parseFailed = true
     }
+    if (parseFailed) throw new Error('Workflow JSON is not valid JSON')
+    value = parsed
   }
 
   if (isWorkflowShape(value)) return value
