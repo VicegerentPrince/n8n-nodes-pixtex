@@ -1,7 +1,4 @@
-// tsc only emits .js — the node icons and codex metadata ship alongside them.
-import { cpSync, mkdirSync } from 'node:fs'
+// `n8n-node build` copies png/svg assets but not codex metadata (.node.json).
+import { cpSync } from 'node:fs'
 
-mkdirSync('dist/nodes/Pixtex', { recursive: true })
-for (const file of ['pixtex.svg', 'pixtex.dark.svg', 'Pixtex.node.json']) {
-  cpSync(`nodes/Pixtex/${file}`, `dist/nodes/Pixtex/${file}`)
-}
+cpSync('nodes/Pixtex/Pixtex.node.json', 'dist/nodes/Pixtex/Pixtex.node.json')
