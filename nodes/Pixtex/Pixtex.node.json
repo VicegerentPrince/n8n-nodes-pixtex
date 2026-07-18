@@ -1,0 +1,14 @@
+{
+  "node": "n8n-nodes-pixtex.pixtex",
+  "nodeVersion": "1.0",
+  "codexVersion": "1.0",
+  "categories": ["Development", "Utility"],
+  "resources": {
+    "credentialDocumentation": [
+      { "url": "https://pixtex.dev/developers" }
+    ],
+    "primaryDocumentation": [
+      { "url": "https://pixtex.dev/developers" }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "name": "n8n-nodes-pixtex",
+  "version": "0.1.0",
+  "description": "Render n8n workflows into share-ready diagrams from inside n8n — one-off images or permanent hosted URLs, powered by the Pixtex render API.",
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n",
+    "workflow",
+    "diagram",
+    "export",
+    "screenshot",
+    "image",
+    "pixtex"
+  ],
+  "homepage": "https://pixtex.dev/developers",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VicegerentPrince/n8n-nodes-pixtex.git"
+  },
+  "bugs": "https://github.com/VicegerentPrince/n8n-nodes-pixtex/issues",
+  "license": "MIT",
+  "author": "Muhammad Muneeb (https://github.com/VicegerentPrince)",
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json && node scripts/copy-assets.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run build"
+  },
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/PixtexApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Pixtex/Pixtex.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "n8n-workflow": "^1.82.0",
+    "typescript": "^5.8.3",
+    "vitest": "^4.1.10"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
+}
