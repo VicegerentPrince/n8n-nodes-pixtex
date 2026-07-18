@@ -1,0 +1,46 @@
+name: Release to npm
+
+# Publishes `n8n-nodes-pixtex` using npm Trusted Publishing (OIDC) —
+# no npm token, no passkey prompt. GitHub proves its identity to npm directly.
+#
+# One-time setup (after the package first exists on npm): on npmjs.com add a
+# Trusted Publisher — GitHub Actions, owner VicegerentPrince, repo
+# n8n-nodes-pixtex, workflow release.yml.
+#
+# To release: bump "version" in package.json, commit, then push a tag
+# `vX.Y.Z` (e.g. `git tag v0.1.1 && git push origin v0.1.1`) or run this
+# workflow manually (Actions → Run workflow).
+
+on:
+  push:
+    tags: ['v*.*.*']
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: publish n8n-nodes-pixtex
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write   # required: lets the runner mint the OIDC token npm verifies
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: 'https://registry.npmjs.org'
+
+      # Trusted Publishing needs a recent npm; Node 22 ships an older one.
+      - name: Update npm
+        run: npm install -g npm@latest
+
+      - name: Install
+        run: npm ci
+
+      - name: Typecheck + test
+        run: npm run typecheck && npm test
+
+      # prepublishOnly runs the build
+      - name: Publish to npm (OIDC — no token)
+        run: npm publish --access public --provenance
