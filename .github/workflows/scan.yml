@@ -1,0 +1,30 @@
+name: n8n community scan
+
+# Runs n8n's official community-package scanner on Linux — the same
+# environment the Creator Portal pre-check uses. The scanner is broken on
+# Windows, so this is the reliable way to self-check before resubmitting.
+#
+# Trigger manually (Actions → n8n community scan → Run workflow), optionally
+# pinning a version; defaults to the latest published on npm.
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Package version to scan (blank = latest on npm)'
+        required: false
+        default: ''
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run scanner
+        run: |
+          SPEC="n8n-nodes-pixtex"
+          if [ -n "${{ inputs.version }}" ]; then SPEC="$SPEC@${{ inputs.version }}"; fi
+          npx --yes @n8n/scan-community-package "$SPEC"
