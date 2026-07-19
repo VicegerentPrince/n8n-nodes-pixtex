@@ -13,7 +13,7 @@ import type {
   AgentPortOrder, EdgeStyle, ExportBackground, ExportFormat, ExportPadding,
   ExportScale, FramePreset, GridStyle, HostedImageResponse, IconPack, IconShape,
   LayoutDirection, ListHostedImagesResponse, NodeDetail, NodePalette,
-  PixtexWorkflow, SettingsStyle, SpacingPreset, WorkflowLayout,
+  NodeTint, PixtexWorkflow, SettingsStyle, SpacingPreset, WorkflowLayout,
 } from './types'
 
 const DEFAULT_BASE_URL = 'https://api.pixtex.dev'
@@ -38,6 +38,12 @@ const BACKGROUND_OPTIONS: Array<Opt<ExportBackground>> = [
   { name: 'White', value: 'white' },
   { name: 'Paper', value: 'paper' },
   { name: 'Transparent', value: 'transparent' },
+  { name: 'Custom Color', value: 'custom' },
+]
+
+const NODE_TINT_OPTIONS: Array<Opt<NodeTint>> = [
+  { name: 'Stock', value: 'stock' },
+  { name: 'Match Background', value: 'match' },
 ]
 
 const ICON_PACK_OPTIONS: Array<Opt<IconPack>> = [
@@ -300,6 +306,13 @@ export class Pixtex implements INodeType {
             default: 'dark',
           },
           {
+            displayName: 'Custom Background Color',
+            name: 'customBgColor',
+            type: 'color',
+            default: '#101B2E',
+            description: 'Solid fill used when Background is Custom Color (#rrggbb)',
+          },
+          {
             displayName: 'Edge Style',
             name: 'edgeStyle',
             type: 'options',
@@ -369,6 +382,14 @@ export class Pixtex implements INodeType {
             description: 'How much text each node card shows',
           },
           {
+            displayName: 'Node Glow',
+            name: 'nodeGlow',
+            type: 'number',
+            typeOptions: { minValue: 0, maxValue: 1, numberPrecision: 2 },
+            default: 0,
+            description: 'Background-colored halo around n8n-pack cards, 0–1 (0 = off; pairs with Node Tint: Match Background)',
+          },
+          {
             displayName: 'Node Outline',
             name: 'outlineOpacity',
             type: 'number',
@@ -383,6 +404,14 @@ export class Pixtex implements INodeType {
             options: PALETTE_OPTIONS,
             default: 'punch',
             description: 'Color scheme for the custom icon pack',
+          },
+          {
+            displayName: 'Node Tint',
+            name: 'nodeTint',
+            type: 'options',
+            options: NODE_TINT_OPTIONS,
+            default: 'stock',
+            description: 'Match Background tints n8n-pack cards with the backdrop (dark backgrounds only)',
           },
           {
             displayName: 'Padding',

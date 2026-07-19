@@ -36,6 +36,22 @@ export function buildOptions(
     out.outlineOpacity = n
   }
 
+  if (out.customBgColor !== undefined) {
+    const v = String(out.customBgColor)
+    if (!/^#[0-9a-fA-F]{6}$/.test(v)) {
+      throw new Error(`Custom background color must be a #rrggbb hex color (got "${v}")`)
+    }
+    out.customBgColor = v
+  }
+
+  if (out.nodeGlow !== undefined) {
+    const n = Number(out.nodeGlow)
+    if (!Number.isFinite(n) || n < 0 || n > 1) {
+      throw new Error(`Node glow must be a number between 0 and 1 (got "${String(out.nodeGlow)}")`)
+    }
+    out.nodeGlow = n
+  }
+
   if (format !== undefined) {
     out.format = format
     if (scale !== undefined && scale !== null && scale !== '') out.scale = Number(scale)
