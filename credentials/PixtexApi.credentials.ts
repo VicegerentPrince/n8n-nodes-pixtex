@@ -14,8 +14,8 @@ export class PixtexApi implements ICredentialType {
   documentationUrl = 'https://pixtex.dev/developers'
 
   icon: Icon = {
-    light: 'file:../nodes/Pixtex/pixtex.svg',
-    dark: 'file:../nodes/Pixtex/pixtex.dark.svg',
+    light: 'file:../nodes/Pixtex/pixtex-light.svg',
+    dark: 'file:../nodes/Pixtex/pixtex-dark.svg',
   }
 
   properties: INodeProperties[] = [

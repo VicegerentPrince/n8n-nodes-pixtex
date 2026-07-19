@@ -131,7 +131,7 @@ export class Pixtex implements INodeType {
   description: INodeTypeDescription = {
     displayName: 'Pixtex',
     name: 'pixtex',
-    icon: { light: 'file:pixtex.svg', dark: 'file:pixtex.dark.svg' },
+    icon: { light: 'file:pixtex-light.svg', dark: 'file:pixtex-dark.svg' },
     group: ['transform'],
     version: 1,
     subtitle: '={{ $parameter["operation"] + ": " + $parameter["resource"] }}',

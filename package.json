@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-pixtex",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Render n8n workflows into share-ready diagrams from inside n8n — one-off images or permanent hosted URLs, powered by the Pixtex render API.",
   "keywords": [
     "n8n-community-node-package",
