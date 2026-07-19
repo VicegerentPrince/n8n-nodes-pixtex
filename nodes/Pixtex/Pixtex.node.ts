@@ -33,6 +33,7 @@ const FORMAT_OPTIONS: Array<Opt<ExportFormat>> = [
 const BACKGROUND_OPTIONS: Array<Opt<ExportBackground>> = [
   { name: 'Dark', value: 'dark' },
   { name: 'Midnight', value: 'midnight' },
+  { name: 'Plum', value: 'plum' },
   { name: 'Gradient', value: 'gradient' },
   { name: 'White', value: 'white' },
   { name: 'Paper', value: 'paper' },
@@ -366,6 +367,14 @@ export class Pixtex implements INodeType {
             options: DETAIL_OPTIONS,
             default: 'standard',
             description: 'How much text each node card shows',
+          },
+          {
+            displayName: 'Node Outline',
+            name: 'outlineOpacity',
+            type: 'number',
+            typeOptions: { minValue: 0.05, maxValue: 1, numberPrecision: 2 },
+            default: 0.15,
+            description: 'N8n-pack node border strength, 0.05–1 (0.15 = n8n in-app look, ~0.4 = n8n site renders)',
           },
           {
             displayName: 'Node Palette',

@@ -28,6 +28,14 @@ export function buildOptions(
     out.gridOpacity = n
   }
 
+  if (out.outlineOpacity !== undefined) {
+    const n = Number(out.outlineOpacity)
+    if (!Number.isFinite(n) || n < 0.05 || n > 1) {
+      throw new Error(`Node outline must be a number between 0.05 and 1 (got "${String(out.outlineOpacity)}")`)
+    }
+    out.outlineOpacity = n
+  }
+
   if (format !== undefined) {
     out.format = format
     if (scale !== undefined && scale !== null && scale !== '') out.scale = Number(scale)

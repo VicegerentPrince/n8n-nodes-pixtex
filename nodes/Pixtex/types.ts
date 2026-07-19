@@ -6,7 +6,7 @@
 
 export type ExportFormat = 'png' | 'jpeg' | 'webp' | 'svg' | 'pdf'
 export type ExportScale = 1 | 2 | 3 | 4
-export type ExportBackground = 'dark' | 'midnight' | 'gradient' | 'white' | 'paper' | 'transparent'
+export type ExportBackground = 'dark' | 'midnight' | 'plum' | 'gradient' | 'white' | 'paper' | 'transparent'
 export type IconPack = 'n8n' | 'custom'
 export type WorkflowLayout = 'original' | 'auto'
 export type LayoutDirection = 'LR' | 'TB' | 'auto'
