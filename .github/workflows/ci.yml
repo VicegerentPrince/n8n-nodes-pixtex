@@ -15,6 +15,11 @@ jobs:
         with:
           node-version: 22
 
+      # Keep npm in lockstep with release.yml — the bundled npm 10 validates
+      # the lockfile differently and has rejected lockfiles npm 11 accepts.
+      - name: Update npm
+        run: npm install -g npm@latest
+
       - name: Install
         run: npm ci
 
