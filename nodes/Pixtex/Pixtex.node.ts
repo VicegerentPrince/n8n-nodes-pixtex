@@ -13,7 +13,7 @@ import type {
   AgentPortOrder, EdgeStyle, ExportBackground, ExportFormat, ExportPadding,
   ExportScale, FramePreset, GridStyle, HostedImageResponse, IconPack, IconShape,
   LayoutDirection, ListHostedImagesResponse, NodeDetail, NodePalette,
-  NodeTint, PixtexWorkflow, SettingsStyle, SpacingPreset, WorkflowLayout,
+  NodeTint, PixtexWorkflow, SettingsStyle, SpacingPreset, StickyMode, WorkflowLayout,
 } from './types'
 
 const DEFAULT_BASE_URL = 'https://api.pixtex.dev'
@@ -39,6 +39,11 @@ const BACKGROUND_OPTIONS: Array<Opt<ExportBackground>> = [
   { name: 'Paper', value: 'paper' },
   { name: 'Transparent', value: 'transparent' },
   { name: 'Custom Color', value: 'custom' },
+]
+
+const STICKY_MODE_OPTIONS: Array<Opt<StickyMode>> = [
+  { name: 'N8n Style', value: 'n8n' },
+  { name: 'Wrap Group', value: 'wrap' },
 ]
 
 const NODE_TINT_OPTIONS: Array<Opt<NodeTint>> = [
@@ -481,6 +486,14 @@ export class Pixtex implements INodeType {
             options: SPACING_OPTIONS,
             default: 'normal',
             description: 'Distance between nodes when auto layout is on',
+          },
+          {
+            displayName: 'Sticky Notes',
+            name: 'stickyMode',
+            type: 'options',
+            options: STICKY_MODE_OPTIONS,
+            default: 'n8n',
+            description: 'On auto layout: N8n Style repositions notes like Tidy Up; Wrap Group also resizes them around their nodes',
           },
         ],
       },

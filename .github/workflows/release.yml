@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       id-token: write   # required: lets the runner mint the OIDC token npm verifies
-      contents: read
+      contents: write   # required: creates the GitHub Release after publish
     steps:
       - uses: actions/checkout@v4
 
@@ -44,3 +44,15 @@ jobs:
       # prepublishOnly runs the build
       - name: Publish to npm (OIDC — no token)
         run: npm publish --access public --provenance
+
+      # Without this the Releases page silently goes stale while npm marches
+      # ahead — every published version should be traceable to a release.
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            --title "n8n-nodes-pixtex ${GITHUB_REF_NAME#v}" \
+            --generate-notes \
+            --verify-tag
